@@ -50,12 +50,15 @@ fastapi-data-cleaning/
 
 ### 1. Clone the repository
 git clone [https://github.com/](https://github.com/)<your-username>/fastapi-data-cleaning.git
+
 cd fastapi-data-cleaning
 
 ### 2. Create a virtual environment
 
 python -m venv venv
+
 source venv/bin/activate   # Mac/Linux
+
 venv\Scripts\activate      # Windows
 
 ### 3. Install dependencies
@@ -116,4 +119,5 @@ uvicorn app.main:app --host=0.0.0.0 --port=8000
 ##  Author
 **Anuja Ingale**  
 GitHub: https://github.com/anujaingale41-lab
+
 
