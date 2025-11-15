@@ -62,3 +62,18 @@ def clean_sample_json():
 
     except json.JSONDecodeError:
         return {"error": "sample.json contains invalid JSON"}
+
+# ---------------------------------------------------------
+# 3️. Optional: Root endpoint for friendly message
+# ---------------------------------------------------------
+@app.get("/")
+def root():
+    return {
+        "message": "Welcome to the Data Validation & Cleaning API!",
+        "endpoints": {
+            "GET /sample": "Clean and return sample JSON",
+            "POST /clean_json": "Submit your JSON data and get cleaned results"
+        }
+    }
+
+
