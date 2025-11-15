@@ -33,16 +33,27 @@ The API returns:
 
 fastapi-data-cleaning/
 │
+
 ├── app/
+
 │   ├── main.py           # API routes
+
 │   ├── schemas.py        # Pydantic models
+
 │   ├── cleaners.py       # Data cleaning logic
+
 │   ├── quality.py        # Quality report generator
+
 │
+
 ├── sample_data/
+
 │   └── sample.json       # Example input data
+
 │
+
 ├── requirements.txt
+
 └── README.md
 
 
@@ -119,5 +130,6 @@ uvicorn app.main:app --host=0.0.0.0 --port=8000
 ##  Author
 **Anuja Ingale**  
 GitHub: https://github.com/anujaingale41-lab
+
 
 
