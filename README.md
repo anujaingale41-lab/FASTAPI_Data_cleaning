@@ -1,125 +1,129 @@
-#  Data Validation & Cleaning API  
-A simple FastAPI service that validates, cleans, and standardizes sales data.  
-It ensures correct data types, fixes formatting, removes invalid rows, and generates a detailed data-quality report.
+# **Data Validation & Cleaning API**
 
-##  Features
-
-### ✔ Validate incoming JSON records  
-- Ensures correct data types  
-- Validates date formats  
-- Enforces positive quantity  
-- Ensures numeric price  
-
-### ✔ Clean & Standardize  
-- Trims strings  
-- Converts product names to Title Case  
-- Converts price → float  
-- Converts dates → proper ISO format  
-- Drops invalid rows
-
-### ✔ Quality Report  
-The API returns:  
-- rows_received  
-- rows_cleaned  
-- invalid_rows  
-- missing_values count  
-
-### ✔ Supports:  
-- **POST** user JSON  
-- **GET** sample data (`sample.json`) located in `sample_data/`
+A simple **FastAPI** service to validate and clean sales data.
+Designed for **data engineers** to demonstrate data validation, cleaning, and reporting in Python.
 
 
-##  Project Structure
+## **Features**
 
+* Validate user-submitted JSON data
+* Clean and standardize product data (`product`, `quantity`, `price`, `order_date`)
+* Generate a **quality report** showing rows cleaned and invalid rows
+* Preloaded sample JSON for testing (`sample_data/sample.json`)
+* Fully **deployed on Render**, accessible via public URL
+
+
+## **Endpoints**
+
+| Method | Endpoint      | Description                                                        |
+| ------ | ------------- | ------------------------------------------------------------------ |
+| GET    | `/sample`     | Returns cleaned data from `sample_data/sample.json`                |
+| POST   | `/clean_json` | Submit your JSON data and get cleaned results and a quality report |
+
+
+## **Live API**
+
+You can test the API live:
+
+* Swagger Docs: [https://fastapi-data-cleaning.onrender.com/docs](https://fastapi-data-cleaning.onrender.com/docs)
+* Sample data: [https://fastapi-data-cleaning.onrender.com/sample](https://fastapi-data-cleaning.onrender.com/sample)
+
+
+## **Usage**
+
+### **1️. Run locally**
+
+1. Clone the repository:
+
+```bash
+git clone https://github.com/anujaingale41-lab/fastapi-data-cleaning.git
+cd fastapi-data-cleaning
+```
+
+2. Create a virtual environment and activate it:
+
+```bash
+python -m venv venv
+# Windows
+venv\Scripts\activate
+# Mac/Linux
+source venv/bin/activate
+```
+
+3. Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+4. Run FastAPI:
+
+```bash
+uvicorn app.main:app --reload
+```
+
+5. Open Swagger docs:
+
+```
+http://127.0.0.1:8000/docs
+```
+
+
+### **2️. Using the API**
+
+#### GET `/sample`
+
+Returns cleaned sample data from `sample_data/sample.json`.
+
+#### POST `/clean_json`
+
+Send a JSON body like:
+
+```json
+[
+  {"product": "  iphone ", "quantity": "2", "price": "55000", "order_date": "2024-01-10"},
+  {"product": "MOTOROLA", "quantity": 1, "price": 22000, "order_date": "2024-01-12"}
+]
+```
+
+Response includes:
+
+* `cleaned_data`: cleaned & validated rows
+* `quality_report`: summary of rows received, cleaned, and invalid rows
+
+---
+
+## **Project Structure**
+
+```
 fastapi-data-cleaning/
 │
-├── app/
-│ ├── main.py # API routes
-│ ├── schemas.py # Pydantic models
-│ ├── cleaners.py # Data cleaning logic
-│ ├── quality.py # Quality report generator
+├─ app/
+│   ├─ main.py          # FastAPI app
+│   ├─ schemas.py       # Pydantic models
+│   ├─ cleaners.py      # Data cleaning functions
+│   └─ quality.py       # Quality report functions
 │
-├── sample_data/
-│ └── sample.json # Example input data
+├─ sample_data/
+│   └─ sample.json      # Sample dataset
 │
-├── requirements.txt
-└── README.md
-
-##  Installation & Local Setup
-
-### 1. Clone the repository
-git clone [https://github.com/](https://github.com/)<your-username>/fastapi-data-cleaning.git
-
-cd fastapi-data-cleaning
-
-### 2. Create a virtual environment
-
-python -m venv venv
-
-source venv/bin/activate   # Mac/Linux
-
-venv\Scripts\activate      # Windows
-
-### 3. Install dependencies
-
-pip install -r requirements.txt
-
-### 4. Run FastAPI
-
-uvicorn app.main:app --reload
+├─ requirements.txt     # Python dependencies
+└─ README.md
+```
 
 
-Go to:  
-http://127.0.0.1:8000/docs to use the API.
+## **Technologies**
+
+* Python 3.x
+* FastAPI
+* Pydantic
+* Pandas
+* Uvicorn
+* Render (for deployment)
 
 
-##  API Endpoints
+## **Author**
 
-### **POST /clean_json**  
-Send your raw JSON data:
-
-[
-{
-"product": "  iphone ",
-"quantity": "2",
-"price": "55000",
-"order_date": "2024/01/10"
-}
-]
-
-
-### Response example:
-
-{
-"cleaned_data": [...],
-"quality_report": {
-"rows_received": 3,
-"rows_cleaned": 1,
-"invalid_rows": 2,
-"missing_values": {...}
-}
-}
-
-
-### **GET /sample**  
-Cleans and returns the contents of `sample_data/sample.json`.
-
-
-### Build command:
-
-pip install -r requirements.txt
-
-
-### Start command:
-
-uvicorn app.main:app --host=0.0.0.0 --port=8000
-
-
-##  Author
-**Anuja Ingale**  
-GitHub: https://github.com/anujaingale41-lab
-
-
-
-
+**Anuja Ingale**
+[GitHub](https://github.com/anujaingale41-lab)
 
